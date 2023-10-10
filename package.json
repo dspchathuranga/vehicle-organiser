@@ -15,10 +15,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "serve-json": "json-server --watch database/vehicle-organiser-db.json --port 4000",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"npm run serve-json\" \"npm run start\"" 
   },
   "eslintConfig": {
     "extends": [
