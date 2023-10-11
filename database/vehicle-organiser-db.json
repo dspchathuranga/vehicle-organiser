@@ -1,12 +1,6 @@
 {
   "users": [
-    {
-      "id": 1,
-      "firstname": "Admin",
-      "lastname": "",
-      "email": "admin@cbrain.com",
-      "password": "$2a$10$GJ.aZZNVxdlvrDDSuOKCQukQUkzO8IySayPcpdWHi9nwXUYz6fgj."
-    }
+    
   ],
   "equipments": [
     {
