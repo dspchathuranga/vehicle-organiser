@@ -13,10 +13,11 @@ const userSlice = createApi({
       }),
       providesTags: (result, error, arg) => {
         // Assuming the data is an array of objects with unique IDs
-        if (result) {
-          return [result.map(item => ({ type: 'User', id: item.id })),[{ type: "User", id: "LIST" }]];
-        }
-        return [{ type: "User", id: "LIST" }];
+        const allTags = result ? 
+          [...result.map((item) => ({ type: 'User', id: item.id })),{ type: "User", id: "LIST" }] 
+          : [{ type: "User", id: "LIST" }]
+
+          return allTags;
       },
     }),
     getUserByEmail: builder.query({
@@ -24,14 +25,14 @@ const userSlice = createApi({
         url: `/users?email=${formData.email}`,
         method: "GET",
       }),
-      providesTags: (result, error, arg) => [
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "User", id })),
-              { type: "User", id: "LIST" },
-            ]
-          : [{ type: "User", id: "LIST" }],
-      ],
+      providesTags: (result, error, arg) => {
+        // Assuming the data is an array of objects with unique IDs
+        const allTags = result ? 
+          [...result.map((item) => ({ type: 'User', id: item.id })),{ type: "User", id: "LIST" }] 
+          : [{ type: "User", id: "LIST" }]
+
+          return allTags;
+      },
     }),
     addUser: builder.mutation({
       query: (formData) => ({
@@ -41,9 +42,9 @@ const userSlice = createApi({
           ...formData,
         },
       }),
-      invalidatesTags: [
-        { type: "User" },
-      ],
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "User", id: "LIST" }];
+      },
     }),
   }),
 });

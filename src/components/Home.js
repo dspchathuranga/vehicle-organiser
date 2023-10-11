@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useGetAllUsersQuery } from '../api/userSlice';
+import { useGetAllVehiclesQuery } from "../api/vehicleSlice";
+import { useGetAllEquipmentsQuery } from "../api/equipmentSlice";
 
 const Home = () => {
-  const {data, error, isLoading} = useGetAllUsersQuery();
-    console.log(data);
+  const {data:vehicles} = useGetAllVehiclesQuery();
+    console.log(vehicles);
+
+    const {data:equipments, error, isLoading} = useGetAllEquipmentsQuery();
+    console.log(equipments);
   return (
     <div>Home</div>
   )
