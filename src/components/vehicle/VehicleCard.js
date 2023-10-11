@@ -13,7 +13,7 @@ const VehicleCard = ({ data }) => {
           <h6 className="card-title">Equipments</h6>
           {data.vehicle.equipments
             ? data.vehicle.equipments.map((equipmentId) => {
-                //console.log("equipmentId : ", equipmentId);
+                console.log("equipmentId : ", data.equipments);
 
                 let equipment = data.equipments.find(
                   (a) => a.id === equipmentId

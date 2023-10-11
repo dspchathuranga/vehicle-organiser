@@ -13,8 +13,8 @@ const Home = () => {
     <div>
       Home
       <div className="row row-cols-1 row-cols-md-4 g-4">
-        {vehicles ? vehicles.map((vehicle, idx) => {
-          return <VehicleCard data={{vehicle:vehicle,equipments}} key={idx} />;
+        {vehicles && equipments ? vehicles.map((vehicle, idx) => {
+          return <VehicleCard data={{vehicle,equipments}} key={idx} />;
         }) : ""}
       </div>
     </div>
