@@ -6,20 +6,6 @@
       "lastname": "",
       "email": "admin@cbrain.com",
       "password": "$2a$10$GJ.aZZNVxdlvrDDSuOKCQukQUkzO8IySayPcpdWHi9nwXUYz6fgj."
-    },
-    {
-      "id": 2,
-      "firstName": "Supun",
-      "lastName": "Chalaka",
-      "email": "supun@intellimorph.ai",
-      "password": "$2a$10$KVilBJsmk6Hm4PccCbhNtOD3yezl4xl1kCVVcTc9Pqw2yZtRV4Sy2"
-    },
-    {
-      "id": 3,
-      "firstName": "Hameesha",
-      "lastName": "Rantharu",
-      "email": "hameesha.rantharu@intellimorph.ai",
-      "password": "$2a$10$DidB60.dvJVHQhFpg59aAe880sZPpSiLh8Tat9ml4brdQaSTWgB/y"
     }
   ],
   "equipments": [
