@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../api/userSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import vehicleSlice from "../api/vehicleSlice";
+import equipmentSlice from "../api/equipmentSlice";
 
 
 const store = configureStore({
     reducer: {
-        [userSlice.reducerPath]: userSlice.reducer
+        [userSlice.reducerPath]: userSlice.reducer,
+        [vehicleSlice.reducerPath]: vehicleSlice.reducer,
+        [equipmentSlice.reducerPath]: equipmentSlice.reducer
     },
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userSlice.middleware),
+    getDefaultMiddleware().concat(userSlice.middleware,vehicleSlice.middleware,equipmentSlice.middleware),
 })
 
 setupListeners(store.dispatch)
