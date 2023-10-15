@@ -64,52 +64,55 @@ function Login() {
 
   return (
     <div className="container mt-5">
-       <ToastContainer />
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h2>Login</h2>
-          <form>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Enter your email address"
-                onChange={handleChange}
-                value={formData.email}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Enter your password"
-                onChange={handleChange}
-                value={formData.password}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary btn-block"
-              onClick={handleSignIn}
-            >
-              Sign In
-            </button>
-          </form>
-        </div>
-        <div className="card-footer">
-          <p className="text-center">
-            {"Don't have an account? "}
-            <a href="#toggle" onClick={toggleForm}>
-              {"Sign Up"}
-            </a>
-          </p>
+    <div className="row justify-content-center">
+      <div className="col-md-6">
+        <div className="card">
+          <div className="card-body">
+            <h2 className="card-title text-center">Login</h2>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter your email address"
+                  onChange={handleChange}
+                  value={formData.email}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Enter your password"
+                  onChange={handleChange}
+                  value={formData.password}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary w-100"
+                onClick={handleSignIn}
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
+          <div className="card-footer">
+            <p className="text-center">
+              Don't have an account?{' '}
+              <a href="#" onClick={toggleForm}>
+                Sign Up
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }
 

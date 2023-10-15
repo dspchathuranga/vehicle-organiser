@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { useAddUserMutation, useGetAllUsersQuery } from "../../api/userSlice";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -28,8 +28,7 @@ function RegistrationForm() {
     }
   }, [users]);
 
-  const canSave =
-    [formData].every(Boolean) && !isLoading;
+  const canSave = [formData].every(Boolean) && !isLoading;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +62,10 @@ function RegistrationForm() {
     }
   };
 
+  const toggleForm = () => {
+    navigate("/login");
+  };
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -73,59 +76,70 @@ function RegistrationForm() {
 
   return (
     <div className="container mt-5">
-      <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2>Registration Form</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="firstName"
-                placeholder="Enter your first name"
-                onChange={handleChange}
-                value={formData.firstName}
-              />
+          <div className="card">
+            <div className="card-body">
+              <h2 className="card-title text-center">Registration Form</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="firstName" className="form-label">First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="firstName"
+                    placeholder="Enter your first name"
+                    onChange={handleChange}
+                    value={formData.firstName}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="lastName" className="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="lastName"
+                    placeholder="Enter your last name"
+                    onChange={handleChange}
+                    value={formData.lastName}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Enter your email address"
+                    onChange={handleChange}
+                    value={formData.email}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Enter your password"
+                    onChange={handleChange}
+                    value={formData.password}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                  Register
+                </button>
+              </form>
             </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="lastName"
-                placeholder="Enter your last name"
-                onChange={handleChange}
-                value={formData.lastName}
-              />
+            <div className="card-footer">
+              <p className="text-center">
+                Already have an account?{' '}
+                <a href="#" onClick={toggleForm}>
+                  Sign In
+                </a>
+              </p>
             </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Enter your email address"
-                onChange={handleChange}
-                value={formData.email}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Enter your password"
-                onChange={handleChange}
-                value={formData.password}
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Register
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
