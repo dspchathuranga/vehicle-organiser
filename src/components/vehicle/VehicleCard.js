@@ -3,6 +3,8 @@ import deleteIcon from "../../assets/deleteIcon.svg";
 import editIcon from "../../assets/pencil-square.svg"
 import PopupModal from "../common/PopupModal";
 import { useDeleteVehicleMutation, useUpdateVehicleMutation } from "../../api/vehicleSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const VehicleCard = ({ data, handler, equipments }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,8 +37,10 @@ const VehicleCard = ({ data, handler, equipments }) => {
         };
         //console.log(updatedVehicle)
         await updateVehicleMutation(updatedVehicle).unwrap();
+        toast("Equipment Removed Successful...");
       } catch (err) {
-        console.log("Failed to remove Equipment");
+        // console.log("Failed to remove Equipment");
+        toast("Equipment Removed Failed...");
       }
     }
   };
@@ -46,15 +50,17 @@ const VehicleCard = ({ data, handler, equipments }) => {
     if (id) {
       try {
         await deleteVehicleMutation(id).unwrap();
+        toast("Vehicle Removed Successful...");
       } catch (err) {
-        console.log("Failed to remove Vehicle");
+        // console.log("Failed to remove Vehicle");
+        toast("Vehicle Removed Failed...");
       }
     }
   };
 
   return (
     <div className="col-12 col-md-4">
-      <div className="card h-100 shadow p-2 mb-1 border-0 rounded">
+      <div className="card h-100 shadow p-2 mb-1 border-1 rounded ">
         <div className="card-body">
           <h5 className="card-title d-none">{data.vehicle.id}</h5>
           <h5 className="card-text d-flex justify-content-between align-items-center">
@@ -76,10 +82,10 @@ const VehicleCard = ({ data, handler, equipments }) => {
               </button> */}
               <div className="btn-group" role="group" aria-label="Basic example">
                 
-                <button type="button" className="btn btn-secondary" onClick={() => handleEdit(data)}>
+                <button type="button" className="btn btn-outline-secondary" onClick={() => handleEdit(data)}>
                 <img src={editIcon} />
                 </button>
-                <button type="button" className="btn btn-danger" onClick={() => handleVehicleRemove(data.vehicle.id)}>
+                <button type="button" className="btn btn-outline-danger" onClick={() => handleVehicleRemove(data.vehicle.id)}>
                 <img src={deleteIcon} />
                 </button>
               </div>
@@ -105,7 +111,7 @@ const VehicleCard = ({ data, handler, equipments }) => {
                           <h6 className="card-title p-1 m-0">
                             {equipment.name}
                             <button
-                              className="btn btn-danger btn-small p-1 ms-2"
+                              className="btn btn-outline-danger btn-small p-1 ms-2"
                               onClick={() =>
                                 handleEquipmentRemove(equipment.id)
                               }
