@@ -25,13 +25,13 @@ const VehicleCard = ({ data, handler }) => {
             </button>
           </h5>
           <p className="card-text">Driver: {data.vehicle.driver}</p>
-          <p className="card-text">Status: {data.vehicle.status}</p>
           <p className="card-text">Fuel Type: {data.vehicle.fuelType}</p>
+          <p className="card-text">Status: {data.vehicle.status}</p>
           <h6 className="card-title">Equipments</h6>
           <div className="row g-2">
             {data.vehicle.equipments
               ? data.vehicle.equipments.map((equipmentId) => {
-                  console.log("equipmentId : ", data.equipments);
+                  //console.log("equipmentId : ", data.equipments);
 
                   let equipment = data.equipments.find(
                     (a) => a.id === equipmentId

@@ -1,26 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { useGetAllVehiclesQuery } from "../api/vehicleSlice";
-import { useGetAllEquipmentsQuery } from "../api/equipmentSlice";
+import { useAddVehicleMutation, useGetAllVehiclesQuery } from "../api/vehicleSlice";
+import { useAddEquipmentMutation, useGetAllEquipmentsQuery } from "../api/equipmentSlice";
 import VehicleCard from "./vehicle/VehicleCard";
 import logo from "../assets/logo.svg";
 import PopupModal from "./common/PopupModal";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentUser, logOut } from "../auth/authSlice";
 
 const Home = () => {
   const siteName = process.env.REACT_APP_NAME;
+
+  const user = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
   const { data: vehicles } = useGetAllVehiclesQuery();
-  console.log(vehicles);
+  //console.log(vehicles);
+  const { data: equipments } = useGetAllEquipmentsQuery();
+  //console.log(equipments);
+
+  const [addEquipmentMutation, { isLoading:equipmentLoading }] = useAddEquipmentMutation()
+
+  const [addVehicleMutation, { isLoading:vehiclaLoading }] = useAddVehicleMutation()
 
   const [isAddVehicleModalOpen, setIsAddVehicleModalOpen] = useState(false);
   const [isAddEquipmentModalOpen, setIsAddEquipmentModalOpen] = useState(false);
 
-  const addVehicle = (data) => {
+  const addVehicle = async (data) => {
+    data.id='v'+(vehicles.length + 1);
     console.log("addv", data);
+    const canSave =
+    [data].every(Boolean) && !vehiclaLoading;
+
+    if (canSave) {
+      try {
+        await addVehicleMutation(data).unwrap();
+
+      } catch (err) {
+        console.log("Failed to save the User");
+      }
+    }
+
   };
 
-  const addEquipment = (data) => {
-    console.log("adde", data);
+  const addEquipment = async (data) => {
+    data.id=equipments.length + 1;
+    //console.log("adde", data);
+
+    const canSave =
+    [data].every(Boolean) && !equipmentLoading;
+
+    if (canSave) {
+      try {
+        await addEquipmentMutation(data).unwrap();
+
+      } catch (err) {
+        console.log("Failed to save the User");
+      }
+    }
+
   };
 
+  
   const editVehicle = (data) => {
     console.log("editv", data);
   };
@@ -33,8 +73,7 @@ const Home = () => {
     setIsAddEquipmentModalOpen(!isAddEquipmentModalOpen);
   };
 
-  const { data: equipments, error, isLoading } = useGetAllEquipmentsQuery();
-  console.log(equipments);
+ 
   return (
     <div>
       <div className="container-fluid px-0">
@@ -51,8 +90,12 @@ const Home = () => {
               href="/home"
               className="text-white ms-4 py-2 pt-3 link-body-emphasis text-decoration-none"
             >
-              Home
+              Home 
             </a>
+
+            <div className="text-white ms-4 py-2 pt-3 text-decoration-none">
+                  Welcome {user.firstName} {user.lastName}
+            </div>
 
             <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
               <button
@@ -67,7 +110,9 @@ const Home = () => {
               >
                 Add Vehicle
               </button>
-              <button className="py-1 btn btn-danger">Logout</button>
+              <button className="py-1 btn btn-danger" 
+              onClick={() => dispatch(logOut(user))}
+              >Logout</button>
             </nav>
           </div>
         </header>
@@ -91,6 +136,7 @@ const Home = () => {
             title={"Add Vehicle"}
             option={"ADDV"}
             handler={addVehicle}
+            equipments={equipments}
           />
           <PopupModal
             isOpen={isAddEquipmentModalOpen}
@@ -98,6 +144,7 @@ const Home = () => {
             title={"Add Equipment"}
             option={"ADDE"}
             handler={addEquipment}
+            equipments={equipments}
           />
         </main>
         <footer className="py-2 border-top bg-dark">
