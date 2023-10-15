@@ -5,7 +5,6 @@ import { useGetUserByEmailQuery } from "../../api/userSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../auth/authSlice";
 
-
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,27 +19,31 @@ function Login() {
   const handleSignIn = (e) => {
     e.preventDefault();
     // You can handle login logic here
-    console.log("Login submitted: ", formData);
+    if (users) {
+      console.log("Login submitted: ", formData);
 
-    users.forEach((user) => {
-      bcrypt.compare(formData.password, user.password, (err, isMatch) => {
-        if (err) {
-          // Handle error
-          console.log("Error : ", err);
-        } else if (isMatch) {
-          console.log("User ID: ", user.id);
-          console.log("First Name: ", user.firstname);
-          console.log("Last Name: ", user.lastname);
-          console.log("Email: ", user.email);
-          console.log("Password: ", user.password);
-          dispatch(setCredentials({ ...user }));
-          navigate("/home");
-        } else {
-          // Passwords do not match, show an error message
-          console.log("Passwords not match");
-        }
+      users.forEach((user) => {
+        bcrypt.compare(formData.password, user.password, (err, isMatch) => {
+          if (err) {
+            // Handle error
+            console.log("Error : ", err);
+          } else if (isMatch) {
+            console.log("User ID: ", user.id);
+            console.log("First Name: ", user.firstname);
+            console.log("Last Name: ", user.lastname);
+            console.log("Email: ", user.email);
+            console.log("Password: ", user.password);
+            dispatch(setCredentials({ ...user }));
+            navigate("/home");
+          } else {
+            // Passwords do not match, show an error message
+            console.log("Passwords not match");
+          }
+        });
       });
-    });
+    } else {
+      console.log("User not found");
+    }
   };
 
   const toggleForm = () => {
