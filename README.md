@@ -74,6 +74,7 @@ To get started with the Student Management System, follow these steps:
     ```
 
 The application will be accessible at `http://localhost:3000`
+
 <!-- 
 ## Running Tests
 
