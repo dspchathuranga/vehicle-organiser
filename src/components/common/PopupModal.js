@@ -79,7 +79,7 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
     if (event.target.checked) {
       setVehicleData((prevData) => ({
         ...prevData,
-        equipments: [...prevData.equipments, equipmentId],
+        equipments: prevData.equipments ? [...prevData.equipments, equipmentId] : [equipmentId],
       }));
       //console.log('checked',vehicleData.equipments);
     } else {
@@ -102,16 +102,16 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
   }, []);
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle} centered size="lg">
+    <Modal isOpen={isOpen} toggle={toggle} centered size="md">
       <ModalHeader toggle={toggle}>{title}</ModalHeader>
       <ModalBody>
         {option === "ADDE" ? (
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
-              <label htmlFor="name" className="col-sm-3 col-form-label">
+              <label htmlFor="name" className="col-sm-4 col-form-label">
                 Equipment Name
               </label>
-              <div className="col-sm-9">
+              <div className="col-sm-8">
                 <input
                   type="text"
                   className="form-control"
@@ -121,17 +121,19 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
                 />
               </div>
             </div>
+            <div className="d-flex justify-content-end">
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
+            </div>
           </form>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
-              <label htmlFor="name" className="col-sm-2 col-form-label">
+              <label htmlFor="name" className="col-sm-4 col-form-label">
                 Vehicle Name
               </label>
-              <div className="col-sm-10">
+              <div className="col-sm-8">
                 <input
                   type="text"
                   className="form-control"
@@ -143,10 +145,10 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
               </div>
             </div>
             <div className="row mb-3">
-              <label htmlFor="driver" className="col-sm-2 col-form-label">
+              <label htmlFor="driver" className="col-sm-4 col-form-label">
                 Driver
               </label>
-              <div className="col-sm-10">
+              <div className="col-sm-8">
                 <input
                   type="text"
                   className="form-control"
@@ -158,10 +160,10 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
               </div>
             </div>
             <div className="row mb-3">
-              <label htmlFor="driver" className="col-sm-2 col-form-label">
+              <label htmlFor="driver" className="col-sm-4 col-form-label">
                 Fuel Type
               </label>
-              <div className="col-sm-10">
+              <div className="col-sm-8">
                 <select
                   className="form-select"
                   aria-label="Default select example"
@@ -178,10 +180,10 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=n
               </div>
             </div>
             <div className="row mb-3">
-              <label htmlFor="driver" className="col-sm-2 col-form-label">
+              <label htmlFor="driver" className="col-sm-4 col-form-label">
                 Status
               </label>
-              <div className="col-sm-10">
+              <div className="col-sm-8">
                 <select
                   className="form-select"
                   aria-label="Default select example"
