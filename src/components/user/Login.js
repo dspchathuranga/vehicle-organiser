@@ -5,7 +5,6 @@ import { useGetUserByEmailQuery } from "../../api/userSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../auth/authSlice";
 
-
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -40,7 +39,9 @@ function Login() {
           console.log("Passwords not match");
         }
       });
-    });
+    } else {
+      console.log("User not found");
+    }
   };
 
   const toggleForm = () => {
