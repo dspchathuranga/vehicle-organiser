@@ -8,8 +8,7 @@ The Vehicle Organiser System is a React Redux project designed for managing vehi
 - [Project Overview](#project-overview)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Accessing API Documentation](#accessing-api-documentation)
-- [Running Tests](#running-tests)
+- [User Guid](#user-guid)
 
 ## Project Overview
 
@@ -26,7 +25,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Getting Started
 
-To get started with the Student Management System, follow these steps:
+To get started with the Vehicle Organiser System, follow these steps:
 
 1. Clone the repository to your local machine:
 
@@ -101,6 +100,30 @@ For Maven-based projects, execute the following command in your project's root d
 ```shell
 mvn test
 ``` -->
+
+## User Guid
+
+1. Register
+   
+   ![Register](https://github.com/dspchathuranga/vehicle-organiser/assets/5466387/3478d0be-9e8d-4680-9225-4a209c8bce3f)
+
+2. Login
+
+   ![Login](https://github.com/dspchathuranga/vehicle-organiser/assets/5466387/88c15588-6fb2-4dd7-a534-7a2fa0b4a3e0)
+   
+3. Add Equipment
+
+   ![Add Equipment](https://github.com/dspchathuranga/vehicle-organiser/assets/5466387/6d939263-9280-4c4b-9fc0-0429697b83ea)
+   
+4. Add Vehicle
+
+   ![Add Vehicle](https://github.com/dspchathuranga/vehicle-organiser/assets/5466387/7a1977ed-2b10-44c0-a4b0-ac584e6b18aa)
+   
+5. Edit Vehicle
+6. Remove Vehicle
+7. Remove Added Equipment
+
+   ![Home](https://github.com/dspchathuranga/vehicle-organiser/assets/5466387/fe4a6eb2-fbeb-40c0-b474-9d59a4174815)
 
 ## Contributing
 
