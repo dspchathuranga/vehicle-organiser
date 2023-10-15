@@ -5,6 +5,6 @@ services:
     container_name: vehicle-organiser
     image: vehicle-organiser-image:1.0
     ports:
-      - "3000:3000"
-      - "4000:4000"
-    stdin_open: true
+      - "3000:3000"  # React app port
+      - "4000:4000"  # JSON Server port
+    #stdin_open: true
