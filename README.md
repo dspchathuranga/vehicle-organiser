@@ -75,6 +75,7 @@ To get started with the Student Management System, follow these steps:
 
 The application will be accessible at `http://localhost:3000`
 
+<!-- 
 ## Running Tests
 
 Testing is an essential part of ensuring the quality and correctness of the Student Management System. We use [JUnit](https://junit.org/junit5/) in combination with [Spring Test](https://spring.io/guides/gs/testing/).
@@ -99,7 +100,7 @@ For Maven-based projects, execute the following command in your project's root d
 
 ```shell
 mvn test
-```
+``` -->
 
 ## Contributing
 

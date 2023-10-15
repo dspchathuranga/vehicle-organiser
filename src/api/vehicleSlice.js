@@ -46,9 +46,30 @@ const vehicleSlice = createApi({
           return [{ type: "Vehicle", id: "LIST" }];
         },
       }),
+      updateVehicle: builder.mutation({
+        query: (vehicleData) => ({
+          url: `/vehicles/${vehicleData.id}`,
+          method: "PUT",
+          body: {
+            ...vehicleData,
+          },
+        }),
+        invalidatesTags: (result, error, arg) => {
+          return [{ type: "Vehicle", id: "LIST" }];
+        },
+      }),
+      deleteVehicle: builder.mutation({
+        query: (id) => ({
+          url: `/vehicles/${id}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: (result, error, arg) => {
+          return [{ type: "Vehicle", id: "LIST" }];
+        },
+      }),
     }),
   });
   
-  export const { useGetAllVehiclesQuery, useGetVehicleByIdQuery, useAddVehicleMutation } = vehicleSlice;
+  export const { useGetAllVehiclesQuery, useGetVehicleByIdQuery, useAddVehicleMutation, useUpdateVehicleMutation, useDeleteVehicleMutation } = vehicleSlice;
   
   export default vehicleSlice;
