@@ -2,9 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { useGetUserByEmailQuery } from "../../api/userSlice";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../auth/authSlice";
+
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,6 +33,7 @@ function Login() {
           console.log("Last Name: ", user.lastname);
           console.log("Email: ", user.email);
           console.log("Password: ", user.password);
+          dispatch(setCredentials({ ...user }));
           navigate("/home");
         } else {
           // Passwords do not match, show an error message
