@@ -7,4 +7,4 @@ services:
     ports:
       - "3000:3000"  # React app port
       - "4000:4000"  # JSON Server port
-    #stdin_open: true
+    stdin_open: true
