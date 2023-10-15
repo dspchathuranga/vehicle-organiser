@@ -20,7 +20,7 @@ function Login() {
   const handleSignIn = (e) => {
     e.preventDefault();
     // You can handle login logic here
-    console.log("Login submitted: ", formData);
+    //console.log("Login submitted: ", formData);
 
     users.forEach((user) => {
       bcrypt.compare(formData.password, user.password, (err, isMatch) => {
@@ -28,11 +28,11 @@ function Login() {
           // Handle error
           console.log("Error : ", err);
         } else if (isMatch) {
-          console.log("User ID: ", user.id);
-          console.log("First Name: ", user.firstname);
-          console.log("Last Name: ", user.lastname);
-          console.log("Email: ", user.email);
-          console.log("Password: ", user.password);
+          // console.log("User ID: ", user.id);
+          // console.log("First Name: ", user.firstname);
+          // console.log("Last Name: ", user.lastname);
+          // console.log("Email: ", user.email);
+          // console.log("Password: ", user.password);
           dispatch(setCredentials({ ...user }));
           navigate("/home");
         } else {

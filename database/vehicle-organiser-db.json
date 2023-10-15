@@ -1,19 +1,5 @@
 {
   "users": [
-    {
-      "id": 1,
-      "firstName": "DSP",
-      "lastName": "Chathuranga",
-      "email": "pushpamal.chathuranga@intellimorph.ai",
-      "password": "$2a$10$KXy/4fbE/Qna4jiFv8TBKOzP7ggT6HDvzl69J6Fi.pYZlJRqKpYPi"
-    },
-    {
-      "id": 2,
-      "firstName": "Hameesha",
-      "lastName": "Rantharu",
-      "email": "hameesha.rantharu@intellimorph.ai",
-      "password": "$2a$10$2Yx3GPMXoIk0.7tMMd898.s2G3/Lwv4Kynzfm0ixo3rh8vKDak7WG"
-    }
   ],
   "equipments": [
     {
@@ -35,10 +21,6 @@
     {
       "id": 5,
       "name": "Custom equipment"
-    },
-    {
-      "id": 6,
-      "name": "ddd"
     }
   ],
   "vehicles": [
@@ -185,149 +167,6 @@
         3,
         4
       ]
-    },
-    {
-      "id": "v16",
-      "name": "dcd",
-      "driver": "dscd",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v17",
-      "name": "",
-      "driver": "",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v18",
-      "name": "",
-      "driver": "",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v19",
-      "name": "",
-      "driver": "",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v20",
-      "name": "",
-      "driver": "",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v21",
-      "name": "dasd",
-      "driver": "sadasd",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": [
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "id": "v22",
-      "name": "KW-9553",
-      "driver": "DSP Chathuranga",
-      "status": "active",
-      "fuelType": "Hybrid",
-      "equipments": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    {
-      "id": "v23",
-      "name": "KW-9553",
-      "driver": "DSP Chathuranga",
-      "status": "active",
-      "fuelType": "Hybrid",
-      "equipments": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    {
-      "id": "v24",
-      "name": "asas",
-      "driver": "DSP Chathuranga",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        2,
-        3,
-        4
-      ]
-    },
-    {
-      "id": "v25",
-      "name": "asas",
-      "driver": "DSP Chathuranga",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v26",
-      "name": "sa",
-      "driver": "asd",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": [
-        2,
-        3
-      ]
-    },
-    {
-      "id": "v27",
-      "name": "sa",
-      "driver": "asd",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": []
-    },
-    {
-      "id": "v28",
-      "name": "sd",
-      "driver": "asd",
-      "status": "active",
-      "fuelType": "Petrol",
-      "equipments": [
-        4,
-        5
-      ]
-    },
-    {
-      "id": "v29",
-      "name": "",
-      "driver": "",
-      "status": "",
-      "fuelType": "",
-      "equipments": []
     }
   ]
 }

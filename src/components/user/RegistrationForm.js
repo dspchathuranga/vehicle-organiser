@@ -18,7 +18,7 @@ function RegistrationForm() {
 
   useEffect(() => {
     if (users) {
-      console.log("users: ", users);
+      //console.log("users: ", users);
       setFormData({
         ...formData,
         id: users.length + 1,
