@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-import { useGetAllEquipmentsQuery } from "../../api/equipmentSlice";
 
-const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
+const PopupModal = ({ isOpen, toggle, title, option, handler, equipments, data=null}) => {
   //const { data: equipments } = useGetAllEquipmentsQuery();
   //console.log(equipments);
 
-  const [selectedEquipment, setSelectedEquipment] = useState([]);
+
 
   const fuelTypesEnv = process.env.REACT_APP_FUEL_TYPES;
   const vehicleStatusEnv = process.env.REACT_APP_VEHICLE_STATUS;
@@ -25,6 +24,21 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
     equipments: [],
   });
 
+
+  useEffect(() => {
+    //console.log(data)
+    if (option === "EDITV" && data) {
+      setVehicleData({
+        id: data.vehicle.id,
+        name: data.vehicle.name,
+        driver: data.vehicle.driver,
+        status: data.vehicle.status,
+        fuelType: data.vehicle.fuelType,
+        equipments: data.vehicle.equipments,
+      });
+    }
+  }, [option, data]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const dataObject = option === "ADDE" ? equipmentData : vehicleData;
@@ -35,6 +49,7 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
       driver: "",
       equipments: [],
     }));
+    toggle();
   };
 
   const handleChange = (e) => {
@@ -45,6 +60,11 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
         [id]: value,
       }));
     } else if (option === "ADDV") {
+      setVehicleData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    }else if (option === "EDITV") {
       setVehicleData((prevData) => ({
         ...prevData,
         [id]: value,
@@ -97,6 +117,7 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                   className="form-control"
                   id="name"
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -116,6 +137,8 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                   className="form-control"
                   id="name"
                   onChange={handleChange}
+                  value={vehicleData.name}
+                  required
                 />
               </div>
             </div>
@@ -129,6 +152,8 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                   className="form-control"
                   id="driver"
                   onChange={handleChange}
+                  value={vehicleData.driver}
+                  required
                 />
               </div>
             </div>
@@ -142,6 +167,7 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                   aria-label="Default select example"
                   id="fuelType"
                   onChange={handleChange}
+                  value={vehicleData.fuelType}
                 >
                   {fuelTypesEnv.split(",").map((type, index) => (
                     <option key={index} value={type}>
@@ -161,6 +187,7 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                   aria-label="Default select example"
                   id="status"
                   onChange={handleChange}
+                  value={vehicleData.status} 
                 >
                   {vehicleStatusEnv.split(",").map((type, index) => (
                     <option key={index} value={type}>
@@ -173,14 +200,14 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
             <h6>Equipments</h6>
             <div className="row mb-3">
               {equipments
-                ? equipments.map((equipment) => (
-                    <div className="col-auto">
+                ? equipments.map((equipment, index) => (
+                    <div className="col-auto" key={index}>
                       <div className="form-check">
                         <input
                           className="form-check-input"
                           type="checkbox"
                           id={equipment.id}
-                          checked={vehicleData.equipments.includes(
+                          checked={vehicleData.equipments?.includes(
                             equipment.id
                           )}
                           onChange={handleCheckboxChange}
@@ -195,31 +222,6 @@ const PopupModal = ({ isOpen, toggle, title, option, handler, equipments }) => {
                     </div>
                   ))
                 : ""}
-
-              {/* <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="gridCheck1"
-                  />
-                  <label className="form-check-label" htmlFor="gridCheck1">
-                    Test Equipmentc 1
-                  </label>
-                </div>
-              
-
-              <div className="col-auto">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="gridCheck1"
-                  />
-                  <label className="form-check-label" htmlFor="gridCheck1">
-                    Test Equipment 2
-                  </label>
-                </div>
-              </div> */}
             </div>
             <div className="d-flex justify-content-end">
               <button type="submit" className="btn btn-primary">
