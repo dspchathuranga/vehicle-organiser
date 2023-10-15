@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { useAddUserMutation, useGetAllUsersQuery } from "../../api/userSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -52,10 +54,11 @@ function RegistrationForm() {
           email: "",
           password: "",
         });
-
+        toast("User Saved Successful...");
         navigate("/");
       } catch (err) {
         console.log("Failed to save the User");
+        toast("User Saved Failed...");
       }
     }
   };
@@ -70,6 +73,7 @@ function RegistrationForm() {
 
   return (
     <div className="container mt-5">
+      <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2>Registration Form</h2>

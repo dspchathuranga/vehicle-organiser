@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs";
 import { useGetUserByEmailQuery } from "../../api/userSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../auth/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -20,12 +22,13 @@ function Login() {
     e.preventDefault();
     // You can handle login logic here
     //console.log("Login submitted: ", formData);
-    if(users) {
+    if(users.length > 0) {
       users.forEach((user) => {
         bcrypt.compare(formData.password, user.password, (err, isMatch) => {
           if (err) {
             // Handle error
             console.log("Error : ", err);
+            toast("Error : ", err);
           } else if (isMatch) {
             // console.log("User ID: ", user.id);
             // console.log("First Name: ", user.firstname);
@@ -37,11 +40,13 @@ function Login() {
           } else {
             // Passwords do not match, show an error message
             console.log("Passwords not match");
+            toast("Passwords not match");
           }
         });
       });
     } else {
       console.log("User not found");
+      toast("User not found");
     }
   };
 
@@ -59,6 +64,7 @@ function Login() {
 
   return (
     <div className="container mt-5">
+       <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2>Login</h2>
