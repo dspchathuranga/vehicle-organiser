@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# Vehicle Organiser
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Vehicle Organiser System is a React Redux project designed for managing vehicles data. This README provides an overview of the project and instructions on how to set it up using Docker Compose.
 
-## Available Scripts
+#### [Check out the Documentation in GitHub Pages site](https://dspchathuranga.github.io/vehicle-organiser/)
 
-In the project directory, you can run:
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Accessing API Documentation](#accessing-api-documentation)
+- [Running Tests](#running-tests)
 
-### `npm start`
+## Project Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Vehicle Organiser System is a React Redux application that provides CRUD (Create, Read, Update, Delete) operations for vehicle data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+Before you begin, ensure you have met the following requirements:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [node](https://nodejs.org/en/download) 14 or later 
+- [nmp](https://nodejs.org/en/download) 6 or later
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get started with the Student Management System, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository to your local machine:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```sh
+    git clone https://github.com/dspchathuranga/vehicle-organiser.git
+    ```
+    
+2. You can change env `Dockerfile` file in the project directory:
 
-### `npm run eject`
+    ```Dockerfile
+    FROM node:18-alpine
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    WORKDIR /app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    COPY package.json .
+    
+    RUN npm install
+    
+    COPY . .
+    
+    EXPOSE 3000 4000
+    
+    # CMD ["npm", "run", "prod"]
+    CMD ["npm", "run", "dev"]
+    ```
+3. You can change port's and image version `docker-compose.yaml` file in the project directory:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```yaml
+    version: "3.8"
+    services:
+      vehicle-organiser:
+      build: .
+      container_name: vehicle-organiser
+      image: vehicle-organiser-image:1.0
+      ports:
+        - "3000:3000"  # React app port
+        - "4000:4000"  # JSON Server port
+      #stdin_open: true
+    ```
+    
+4. Start the application and database services using Docker Compose:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```sh
+    docker-compose up
+    ```
 
-## Learn More
+The application will be accessible at `http://localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Running Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Testing is an essential part of ensuring the quality and correctness of the Student Management System. We use [JUnit](https://junit.org/junit5/) in combination with [Spring Test](https://spring.io/guides/gs/testing/).
 
-### Code Splitting
+Before running the tests, make sure the `application.properties` configuration:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```properties
+# Database Configuration
+spring.datasource.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
+spring.datasource.username=${DATABASE_USERNAME:postgres}
+spring.datasource.password=${DATABASE_PASSWORD:postgres}
 
-### Analyzing the Bundle Size
+# Flyway Configuration
+spring.flyway.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
+spring.flyway.user=${DATABASE_USERNAME:postgres}
+spring.flyway.password=${DATABASE_PASSWORD:postgres}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Using Maven
 
-### Making a Progressive Web App
+For Maven-based projects, execute the following command in your project's root directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```shell
+mvn test
+```
 
-### Advanced Configuration
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you would like to contribute to the project, please submit a pull request. We welcome your contributions and ideas.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+© 2023 DSP Chathuranga
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
