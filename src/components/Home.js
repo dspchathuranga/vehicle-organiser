@@ -13,6 +13,8 @@ import logo from "../assets/logo.svg";
 import PopupModal from "./common/PopupModal";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, logOut } from "../auth/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const siteName = process.env.REACT_APP_NAME;
@@ -45,8 +47,10 @@ const Home = () => {
     if (canSave) {
       try {
         await addVehicleMutation(data).unwrap();
+        toast("Vehicla Saved Successful...");
       } catch (err) {
-        console.log("Failed to save the Vehicle");
+        // console.log("Failed to save the Vehicle");
+        toast("Vehicla Saved Failed...");
       }
     }
   };
@@ -60,8 +64,10 @@ const Home = () => {
     if (canSave) {
       try {
         await addEquipmentMutation(data).unwrap();
+        toast("Equipment Saved Successful...");
       } catch (err) {
-        console.log("Failed to save the Equipment");
+        // console.log("Failed to save the Equipment");
+        toast("Equipment Saved Failed...");
       }
     }
   };
@@ -73,8 +79,10 @@ const Home = () => {
     if (canSave) {
       try {
         await updateVehicleMutation(data).unwrap();
+        toast("Vehicla Update Successful...");
       } catch (err) {
-        console.log("Failed to update Vehicle");
+        toast("Vehicla Update Failed...");
+        //console.log("Failed to update Vehicle");
       }
     }
   };
@@ -88,6 +96,7 @@ const Home = () => {
 
   return (
     <div>
+      <ToastContainer />
       <div className="container-fluid px-0">
         <header>
           <div className="d-flex flex-column flex-md-row align-items-center px-3 py-2 mb-4 border-bottom bg-dark">
@@ -111,7 +120,7 @@ const Home = () => {
 
             <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
               <button
-                className="me-3 py-1 btn btn-outline-secondary text-decoration-none"
+                className="me-3 py-1 btn btn-outline-primary text-decoration-none"
                 onClick={() => toggleAddEquipmentModal()}
               >
                 Add Equipment
@@ -123,7 +132,7 @@ const Home = () => {
                 Add Vehicle
               </button>
               <button
-                className="py-1 btn btn-danger"
+                className="py-1 btn btn-outline-danger"
                 onClick={() => dispatch(logOut(user))}
               >
                 Logout
