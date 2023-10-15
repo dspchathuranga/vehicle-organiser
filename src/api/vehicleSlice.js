@@ -55,7 +55,7 @@ const vehicleSlice = createApi({
           },
         }),
         invalidatesTags: (result, error, arg) => {
-          return [{ type: "Vehicle", id: "LIST" }];
+          return [{ type: "Vehicle", id: arg.id }];
         },
       }),
       deleteVehicle: builder.mutation({
@@ -64,7 +64,7 @@ const vehicleSlice = createApi({
           method: "DELETE",
         }),
         invalidatesTags: (result, error, arg) => {
-          return [{ type: "Vehicle", id: "LIST" }];
+          return [{ type: "Vehicle", id: arg }];
         },
       }),
     }),
