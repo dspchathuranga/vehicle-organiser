@@ -13,34 +13,9 @@ jobs:
         uses: actions/checkout@v3
       -
         name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ECR_SECRET }}
           aws-region: us-east-1
-      -
-        name: Login to Amazon public ECR
-        id: login-ecr-public
-        uses: aws-actions/amazon-ecr-login@v1
-        with:
-          registry-type: public
-      -
-        name: Build and push images
-        run: |
-          ./scripts/build-frontend.sh
-          ./scripts/build-api.sh
-          ./scripts/push-frontend.sh
-          ./scripts/push-api.sh
-      -
-        name: Deploy the app
-        run: |
-            aws deploy create-deployment \
-            --application-name guessthename \
-            --deployment-group-name guessthename-dev \
-            --s3-location bucket=guessthename.codedeploy.bucket,key=code-deploy-docker-compose.zip,bundleType=zip
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ECR_SECRET }}
-          AWS_DEFAULT_REGION: us-east-1
-
-  
+     
