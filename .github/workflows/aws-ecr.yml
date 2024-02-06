@@ -32,5 +32,5 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
-        # docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
-        docker push public.ecr.aws/x9q8g3p4/vehicle-organiser:latest
+        docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+        # docker push public.ecr.aws/x9q8g3p4/vehicle-organiser:latest
